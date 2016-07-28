@@ -1,3 +1,4 @@
+import sys
 
 
 def a(string):
@@ -22,7 +23,13 @@ def g(string):
 	return 5
 
 def entry(string, l, i):
-	return l[string[i]](string)
+	try:
+		return l[string[i]](string)
+	except IndexError:
+		print('String incomplete!')
+	except KeyError:
+		print('Incorrect Value!')
+
 
 l3 = {
 	'G': g
@@ -40,4 +47,6 @@ l1 = {
 	'C': c
 }
 
-print(entry('CFG', l1, 0))
+if __name__ == '__main__':
+    string = sys.argv[1]
+    print(entry(string, l1, 0))
